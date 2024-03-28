@@ -1,5 +1,4 @@
 using FunFactThursday.Domain.common;
-using FunFactThursday.Infrastructure;
 using FunFactThursday.Persistence.common;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

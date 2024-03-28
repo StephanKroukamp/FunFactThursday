@@ -16,7 +16,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\FunFactThursday.Application\FunFactThursday.Application.csproj" />
-      <ProjectReference Include="..\FunFactThursday.Infrastructure\FunFactThursday.Infrastructure.csproj" />
       <ProjectReference Include="..\FunFactThursday.Persistence\FunFactThursday.Persistence.csproj" />
     </ItemGroup>
 

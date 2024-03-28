@@ -1,5 +1,4 @@
 using FunFactThursday.Application;
-using FunFactThursday.Infrastructure;
 using FunFactThursday.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,8 +14,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddApplication();
 
 builder.Services.AddPersistence(configuration);
-
-builder.Services.AddInfrastructure();
 
 var app = builder.Build();
 

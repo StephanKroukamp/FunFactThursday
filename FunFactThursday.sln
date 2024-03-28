@@ -10,8 +10,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunFactThursday.Domain", "F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunFactThursday.Persistence", "FunFactThursday.Persistence\FunFactThursday.Persistence.csproj", "{43C54620-6200-4200-BBB6-7CB7447C7185}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunFactThursday.Infrastructure", "FunFactThursday.Infrastructure\FunFactThursday.Infrastructure.csproj", "{D7F9413C-98E1-4A68-9EF4-35EA33E3B516}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,16 +32,11 @@ Global
 		{43C54620-6200-4200-BBB6-7CB7447C7185}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43C54620-6200-4200-BBB6-7CB7447C7185}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43C54620-6200-4200-BBB6-7CB7447C7185}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D7F9413C-98E1-4A68-9EF4-35EA33E3B516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7F9413C-98E1-4A68-9EF4-35EA33E3B516}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7F9413C-98E1-4A68-9EF4-35EA33E3B516}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7F9413C-98E1-4A68-9EF4-35EA33E3B516}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{6B197918-7191-422A-ADAA-EA04EB284BF2} = {6E9F7172-707A-49C1-9170-489A8CD7C21F}
 		{CAA96A2C-DF1F-459E-BCE3-82024884EA3C} = {6E9F7172-707A-49C1-9170-489A8CD7C21F}
 		{3646EC01-5800-488E-B19E-4C027A401E46} = {6E9F7172-707A-49C1-9170-489A8CD7C21F}
 		{43C54620-6200-4200-BBB6-7CB7447C7185} = {6E9F7172-707A-49C1-9170-489A8CD7C21F}
-		{D7F9413C-98E1-4A68-9EF4-35EA33E3B516} = {6E9F7172-707A-49C1-9170-489A8CD7C21F}
 	EndGlobalSection
 EndGlobal

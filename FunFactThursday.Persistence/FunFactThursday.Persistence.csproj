@@ -21,7 +21,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\FunFactThursday.Domain\FunFactThursday.Domain.csproj" />
-      <ProjectReference Include="..\FunFactThursday.Infrastructure\FunFactThursday.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
