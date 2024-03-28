@@ -5,10 +5,10 @@ namespace FunFactThursday.Application.Users.GetUser;
 
 public class GetUserQuery : IRequest<UserDto>
 {
-    public GetUserQuery(UserId userId)
+    public GetUserQuery(Guid id)
     {
-        UserId = userId;
+        Id = id;
     }
 
-    public UserId UserId { get; set; }
+    public Guid Id { get; set; }
 }

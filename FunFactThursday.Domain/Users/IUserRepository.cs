@@ -4,7 +4,7 @@ public interface IUserRepository
 {
     Task<List<User>> GetAllAsync(CancellationToken cancellationToken = default);
 
-    Task<User?> GetByIdAsync(UserId userId, CancellationToken cancellationToken = default);
+    Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
     
     Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default);
 

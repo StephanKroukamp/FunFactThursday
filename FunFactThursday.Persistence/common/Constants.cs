@@ -10,6 +10,6 @@ public static class Constants
     public static class Tables
     {
         public const string Users = "User";
-        public const string Tickets = "Ticket";
+        public const string Registrations = "Registrations";
     }
 }

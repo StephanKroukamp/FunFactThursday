@@ -5,19 +5,19 @@ namespace FunFactThursday.Persistence.Users;
 
 internal sealed class UserRepository : IUserRepository
 {
-    private readonly FunFactThursdayDbContext _dbContext;
+    private readonly RegistrationDbContext _dbContext;
 
-    public UserRepository(FunFactThursdayDbContext dbContext) => _dbContext = dbContext;
+    public UserRepository(RegistrationDbContext dbContext) => _dbContext = dbContext;
 
     public async Task<List<User>> GetAllAsync(CancellationToken cancellationToken = default) =>
         await _dbContext
             .Set<User>()
             .ToListAsync(cancellationToken);
 
-    public async Task<User?> GetByIdAsync(UserId userId, CancellationToken cancellationToken = default) =>
+    public async Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default) =>
         await _dbContext
             .Set<User>()
-            .FirstOrDefaultAsync(user => user.Id == userId, cancellationToken);
+            .FirstOrDefaultAsync(user => user.Id == id, cancellationToken);
 
     public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken = default) =>
         await _dbContext

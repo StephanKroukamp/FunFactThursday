@@ -5,10 +5,10 @@ namespace FunFactThursday.Application.Users.DeleteUser;
 
 public class DeleteUserCommand : IRequest<Unit>
 {
-    public DeleteUserCommand(UserId userId)
+    public DeleteUserCommand(Guid id)
     {
-        UserId = userId;
+        Id = id;
     }
 
-    public UserId UserId { get; set; }
+    public Guid Id { get; set; }
 }

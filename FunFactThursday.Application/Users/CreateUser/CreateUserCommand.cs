@@ -4,10 +4,9 @@ namespace FunFactThursday.Application.Users.CreateUser;
 
 public class CreateUserCommand : IRequest<UserDto>
 {
-    public CreateUserCommand(CreateUserDto createUserDto)
-    {
-        CreateUserDto = createUserDto;
-    }
+    public string Email { get; set; } = null!;
 
-    public CreateUserDto CreateUserDto { get; set; }
+    public string FirstName { get; set; } = null!;
+
+    public string LastName { get; set; } = null!;
 }
