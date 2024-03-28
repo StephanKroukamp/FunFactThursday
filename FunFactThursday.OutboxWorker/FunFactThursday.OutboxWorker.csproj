@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>dotnet-FunFactThursday.OutboxWorker-C7D86C1B-8E1E-4C7D-B7FB-A61752BA324A</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.1-develop.1719" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\FunFactThursday.Application\FunFactThursday.Application.csproj" />
+      <ProjectReference Include="..\FunFactThursday.Persistence\FunFactThursday.Persistence.csproj" />
+    </ItemGroup>
+</Project>
