@@ -11,6 +11,8 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
     {
         ConfigureDataStructure(builder);
 
+        ConfigureRelationships(builder);
+        
         ConfigureIndexes(builder);
     }
 
@@ -29,6 +31,12 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(user => user.LastName).IsRequired().HasMaxLength(100);
     }
 
+    private static void ConfigureRelationships(EntityTypeBuilder<User> builder)
+    {
+        builder
+            .HasMany(user => user.Registrations);
+    }
+            
     private static void ConfigureIndexes(EntityTypeBuilder<User> builder)
     {
         builder.HasIndex(user => user.Email).IsUnique();

@@ -11,6 +11,8 @@ internal sealed class EventConfiguration : IEntityTypeConfiguration<Event>
     {
         ConfigureDataStructure(builder);
 
+        ConfigureRelationships(builder);
+        
         ConfigureIndexes(builder);
     }
 
@@ -27,6 +29,12 @@ internal sealed class EventConfiguration : IEntityTypeConfiguration<Event>
         builder.Property(x => x.TotalDonations);
     }
 
+    private static void ConfigureRelationships(EntityTypeBuilder<Event> builder)
+    {
+        builder
+            .HasMany(@event => @event.Registrations);
+    }
+    
     private static void ConfigureIndexes(EntityTypeBuilder<Event> builder)
     {
         builder.HasIndex(x => new

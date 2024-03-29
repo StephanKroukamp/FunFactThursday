@@ -1,4 +1,4 @@
-using FunFactThursday.Application.Registrations.Consumers;
+using FunFactThursday.Application.Consumers;
 using FunFactThursday.Persistence;
 using FunFactThursday.Persistence.Consumers;
 using FunFactThursday.Persistence.StateMachines;

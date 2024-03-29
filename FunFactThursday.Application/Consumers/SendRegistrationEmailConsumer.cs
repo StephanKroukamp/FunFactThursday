@@ -2,7 +2,7 @@ using FunFactThursday.Domain.Contracts;
 using MassTransit;
 using Microsoft.Extensions.Logging;
 
-namespace FunFactThursday.Application.Registrations.Consumers;
+namespace FunFactThursday.Application.Consumers;
 
 public class SendRegistrationEmailConsumer :
     IConsumer<SendRegistrationEmail>
