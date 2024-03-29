@@ -6,7 +6,7 @@ namespace FunFactThursday.Persistence.Consumers;
 public class RegistrationValidationService :
     IRegistrationValidationService
 {
-    readonly IPublishEndpoint _publishEndpoint;
+    private readonly IPublishEndpoint _publishEndpoint;
 
     public RegistrationValidationService(IPublishEndpoint publishEndpoint)
     {

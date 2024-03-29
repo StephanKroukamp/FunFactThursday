@@ -7,7 +7,7 @@ namespace FunFactThursday.Application.Registrations.Consumers;
 public class AddEventAttendeeConsumer :
     IConsumer<AddEventAttendee>
 {
-    readonly ILogger<AddEventAttendeeConsumer> _logger;
+    private readonly ILogger<AddEventAttendeeConsumer> _logger;
 
     public AddEventAttendeeConsumer(ILogger<AddEventAttendeeConsumer> logger)
     {
@@ -16,7 +16,8 @@ public class AddEventAttendeeConsumer :
 
     public Task Consume(ConsumeContext<AddEventAttendee> context)
     {
-        _logger.LogInformation("Adding Member {MemberId} as an attendee for event {EventId}", context.Message.UserId, context.Message.EventId);
+        _logger.LogInformation("Adding User {UserId} as an attendee for Event {EventId}", context.Message.UserId,
+            context.Message.EventId);
 
         return Task.CompletedTask;
     }

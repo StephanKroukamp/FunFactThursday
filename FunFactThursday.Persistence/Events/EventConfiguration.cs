@@ -23,7 +23,7 @@ internal sealed class EventConfiguration : IEntityTypeConfiguration<Event>
         builder.Property(x => x.Id).ValueGeneratedNever();
 
         builder.Property(x => x.Name);
-        
+
         builder.Property(x => x.TotalDonations);
     }
 

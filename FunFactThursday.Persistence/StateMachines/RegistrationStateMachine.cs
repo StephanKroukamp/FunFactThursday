@@ -32,7 +32,7 @@ public class RegistrationStateMachine :
                 .If(context => context.Saga.Payment < 50m && context.GetRetryAttempt() == 0,
                     fail => fail.Then(_ =>
                         throw new ApplicationException(
-                            "Totally random, but you didn't pay enough for quality service")))
+                            "Really less than 50?")))
                 .Publish(context => new AddEventAttendee
                 {
                     RegistrationId = context.Saga.CorrelationId,

@@ -12,21 +12,28 @@ public class RegistrationRepository : IRegistrationRepository
         _dbContext = dbContext;
     }
 
-    public async Task<List<Registration>> GetAllAsync(CancellationToken cancellationToken = default) =>
-        await _dbContext
+    public async Task<List<Registration>> GetAllAsync(CancellationToken cancellationToken = default)
+    {
+        return await _dbContext
             .Set<Registration>()
             .ToListAsync(cancellationToken);
+    }
 
-    public async Task<Registration?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default) =>
-        await _dbContext
+    public async Task<Registration?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        return await _dbContext
             .Set<Registration>()
             .FirstOrDefaultAsync(registration => registration.Id == id, cancellationToken);
+    }
 
-    public async Task<bool> IsUserAlreadyAttendingEvent(Guid userId, Guid eventId, CancellationToken cancellationToken = default) =>
-        await _dbContext
+    public async Task<bool> IsUserAlreadyAttendingEvent(Guid userId, Guid eventId,
+        CancellationToken cancellationToken = default)
+    {
+        return await _dbContext
             .Set<Registration>()
             .AnyAsync(registration => registration.UserId == userId &&
                                       registration.EventId == eventId, cancellationToken);
+    }
 
     public void Add(Registration registration)
     {

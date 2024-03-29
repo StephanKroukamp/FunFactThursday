@@ -8,11 +8,11 @@ namespace FunFactThursday.Application.Registrations;
 
 public class RegistrationService : IRegistrationService
 {
+    private readonly IEventRepository _eventRepository;
+    private readonly IPublishEndpoint _publishEndpoint;
     private readonly IRegistrationRepository _registrationRepository;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IPublishEndpoint _publishEndpoint;
     private readonly IUserRepository _userRepository;
-    private readonly IEventRepository _eventRepository;
 
     public RegistrationService(
         IRegistrationRepository registrationRepository,
@@ -30,9 +30,9 @@ public class RegistrationService : IRegistrationService
 
     public async Task<List<RegistrationDto>> GetAllAsync(CancellationToken cancellationToken)
     {
-        var registrations =  await _registrationRepository
+        var registrations = await _registrationRepository
             .GetAllAsync(cancellationToken);
-        
+
         return registrations
             .Select(x => x.MapToRegistrationDto())
             .ToList();
@@ -59,9 +59,7 @@ public class RegistrationService : IRegistrationService
                      ?? throw new Exception("Event Not Found");
 
         if (await _registrationRepository.IsUserAlreadyAttendingEvent(user.Id, @event.Id, cancellationToken))
-        {
             throw new Exception("User is already attending the event");
-        }
 
         var registration = new Registration
         {

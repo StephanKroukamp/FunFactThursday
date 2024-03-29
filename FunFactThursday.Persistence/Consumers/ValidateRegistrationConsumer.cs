@@ -7,10 +7,11 @@ namespace FunFactThursday.Persistence.Consumers;
 public class ValidateRegistrationConsumer :
     IConsumer<AddEventAttendee>
 {
-    readonly ILogger<ValidateRegistrationConsumer> _logger;
-    readonly IRegistrationValidationService _validationService;
+    private readonly ILogger<ValidateRegistrationConsumer> _logger;
+    private readonly IRegistrationValidationService _validationService;
 
-    public ValidateRegistrationConsumer(ILogger<ValidateRegistrationConsumer> logger, IRegistrationValidationService validationService)
+    public ValidateRegistrationConsumer(ILogger<ValidateRegistrationConsumer> logger,
+        IRegistrationValidationService validationService)
     {
         _logger = logger;
         _validationService = validationService;
@@ -18,6 +19,7 @@ public class ValidateRegistrationConsumer :
 
     public async Task Consume(ConsumeContext<AddEventAttendee> context)
     {
-        await _validationService.ValidateRegistration(context.Message.EventId, context.Message.UserId, context.Message.RegistrationId);
+        await _validationService.ValidateRegistration(context.Message.EventId, context.Message.UserId,
+            context.Message.RegistrationId);
     }
 }

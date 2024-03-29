@@ -7,24 +7,24 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\FunFactThursday.Domain\FunFactThursday.Domain.csproj" />
+        <ProjectReference Include="..\FunFactThursday.Domain\FunFactThursday.Domain.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="common\" />
+        <Folder Include="common\"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="MassTransit.Abstractions" Version="8.2.1-develop.1719" />
+        <PackageReference Include="MassTransit.Abstractions" Version="8.2.1-develop.1719"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
-        <HintPath>..\..\..\..\..\opt\homebrew\Cellar\dotnet@6\6.0.125\libexec\shared\Microsoft.AspNetCore.App\6.0.25\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
-      </Reference>
-      <Reference Include="Microsoft.Extensions.Logging.Abstractions">
-        <HintPath>..\..\..\..\..\opt\homebrew\Cellar\dotnet@6\6.0.125\libexec\shared\Microsoft.AspNetCore.App\6.0.25\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
-      </Reference>
+        <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
+            <HintPath>..\..\..\..\..\opt\homebrew\Cellar\dotnet@6\6.0.125\libexec\shared\Microsoft.AspNetCore.App\6.0.25\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+            <HintPath>..\..\..\..\..\opt\homebrew\Cellar\dotnet@6\6.0.125\libexec\shared\Microsoft.AspNetCore.App\6.0.25\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+        </Reference>
     </ItemGroup>
 
 </Project>

@@ -16,15 +16,15 @@ public class FunFactThursdayDbContext : SagaDbContext
     {
         get { yield return new RegistrationStateMap(); }
     }
-    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        
+
         modelBuilder.HasDefaultSchema(Constants.Schemas.FunFactThursday);
 
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(DependencyInjection).Assembly);
-        
+
         modelBuilder.AddInboxStateEntity();
         modelBuilder.AddOutboxMessageEntity();
         modelBuilder.AddOutboxStateEntity();

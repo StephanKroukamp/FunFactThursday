@@ -5,9 +5,9 @@ namespace FunFactThursday.Application.Users;
 
 public class UserService : IUserService
 {
-    private readonly IUserRepository _userRepository;
     private readonly IUnitOfWork _unitOfWork;
-    
+    private readonly IUserRepository _userRepository;
+
     public UserService(IUserRepository userRepository, IUnitOfWork unitOfWork)
     {
         _userRepository = userRepository;
@@ -22,7 +22,7 @@ public class UserService : IUserService
             .Select(x => x.MapToUserDto())
             .ToList();
     }
-    
+
     public async Task<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         var user = await _userRepository.GetByIdAsync(id, cancellationToken)
@@ -30,13 +30,11 @@ public class UserService : IUserService
 
         return user.MapToUserDto();
     }
-    
+
     public async Task<UserDto> CreateAsync(CreateUserDto createUserDto, CancellationToken cancellationToken)
     {
         if (!await _userRepository.IsEmailUniqueAsync(createUserDto.Email, cancellationToken))
-        {
             throw new Exception("Email already exists");
-        }
 
         var user = new User
         {
@@ -52,7 +50,7 @@ public class UserService : IUserService
 
         return user.MapToUserDto();
     }
-    
+
     public async Task<UserDto> UpdateAsync(UserDto userDto, CancellationToken cancellationToken)
     {
         var user = await _userRepository.GetByIdAsync(userDto.Id, cancellationToken)
@@ -78,21 +76,15 @@ public class UserService : IUserService
 
         return true;
     }
-    
+
     private static void UpdateLastName(UserDto userDto, User user)
     {
-        if (user.LastName != userDto.LastName)
-        {
-            user.LastName = userDto.LastName;
-        }
+        if (user.LastName != userDto.LastName) user.LastName = userDto.LastName;
     }
 
     private static void UpdateFirstName(UserDto userDto, User user)
     {
-        if (user.FirstName != userDto.FirstName)
-        {
-            user.FirstName = userDto.FirstName;
-        }
+        if (user.FirstName != userDto.FirstName) user.FirstName = userDto.FirstName;
     }
 
     private async Task UpdateEmailAsync(UserDto userDto, User user,
@@ -101,9 +93,7 @@ public class UserService : IUserService
         if (user.Email != userDto.Email)
         {
             if (!await _userRepository.IsEmailUniqueAsync(userDto.Email, cancellationToken))
-            {
                 throw new Exception("Email already exists");
-            }
 
             user.Email = userDto.Email;
         }

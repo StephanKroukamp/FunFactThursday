@@ -12,14 +12,11 @@ var host = Host.CreateDefaultBuilder(args)
         {
             var connectionString = hostContext.Configuration.GetConnectionString("DefaultConnection");
 
-            x.UseSqlServer(connectionString, options =>
-            {
-                options.MinBatchSize(1);
-            });
+            x.UseSqlServer(connectionString, options => { options.MinBatchSize(1); });
         });
-        
+
         services.AddScoped<IRegistrationValidationService, RegistrationValidationService>();
-        
+
         services.AddMassTransit(x =>
         {
             x.AddEntityFrameworkOutbox<FunFactThursdayDbContext>(o =>
@@ -42,10 +39,7 @@ var host = Host.CreateDefaultBuilder(args)
                     r.UseSqlServer();
                 });
 
-            x.UsingRabbitMq((context, cfg) =>
-            {
-                cfg.ConfigureEndpoints(context);
-            });
+            x.UsingRabbitMq((context, cfg) => { cfg.ConfigureEndpoints(context); });
         });
     })
     .Build();

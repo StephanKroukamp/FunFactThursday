@@ -10,7 +10,7 @@ public class RegistrationStateMap :
     protected override void Configure(EntityTypeBuilder<RegistrationState> entity, ModelBuilder model)
     {
         entity.Property(x => x.CurrentState);
-        
+
         entity.Property(x => x.RegistrationDate);
         entity.Property(x => x.EventId);
         entity.Property(x => x.UserId);

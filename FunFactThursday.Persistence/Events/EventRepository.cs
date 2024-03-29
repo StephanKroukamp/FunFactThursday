@@ -12,23 +12,31 @@ public class EventRepository : IEventRepository
         _dbContext = dbContext;
     }
 
-    public async Task<List<Event>> GetAllAsync(CancellationToken cancellationToken = default) =>
-        await _dbContext
+    public async Task<List<Event>> GetAllAsync(CancellationToken cancellationToken = default)
+    {
+        return await _dbContext
             .Set<Event>()
             .ToListAsync(cancellationToken);
+    }
 
-    public async Task<Event?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default) =>
-        await _dbContext
+    public async Task<Event?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        return await _dbContext
             .Set<Event>()
             .FirstOrDefaultAsync(registration => registration.Id == id, cancellationToken);
+    }
 
-    public async Task<Event?> GetByNameAsync(string name, CancellationToken cancellationToken = default) =>
-        await _dbContext
+    public async Task<Event?> GetByNameAsync(string name, CancellationToken cancellationToken = default)
+    {
+        return await _dbContext
             .Set<Event>()
             .FirstOrDefaultAsync(@event => @event.Name == name, cancellationToken);
+    }
 
-    public async Task<bool> IsNameUniqueAsync(string name, CancellationToken cancellationToken = default) =>
-        !await _dbContext.Set<Event>().AnyAsync(@event => @event.Name == name, cancellationToken);
+    public async Task<bool> IsNameUniqueAsync(string name, CancellationToken cancellationToken = default)
+    {
+        return !await _dbContext.Set<Event>().AnyAsync(@event => @event.Name == name, cancellationToken);
+    }
 
     public void Add(Event @event)
     {

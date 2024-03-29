@@ -7,7 +7,7 @@ namespace FunFactThursday.Application.Registrations.Consumers;
 public class SendRegistrationEmailConsumer :
     IConsumer<SendRegistrationEmail>
 {
-    readonly ILogger<SendRegistrationEmailConsumer> _logger;
+    private readonly ILogger<SendRegistrationEmailConsumer> _logger;
 
     public SendRegistrationEmailConsumer(ILogger<SendRegistrationEmailConsumer> logger)
     {
@@ -16,8 +16,12 @@ public class SendRegistrationEmailConsumer :
 
     public Task Consume(ConsumeContext<SendRegistrationEmail> context)
     {
-        _logger.LogInformation("Notifying Member {MemberId} that they registered for event {EventId} on {RegistrationDate}", context.Message.UserId,
-            context.Message.EventId, context.Message.RegistrationDate);
+        _logger.LogInformation(
+            "Notifying User {UserId} that they registered for event {EventId} on {RegistrationDate} Registration {RegistrationId}",
+            context.Message.UserId,
+            context.Message.EventId,
+            context.Message.RegistrationDate,
+            context.Message.RegistrationId);
 
         return Task.CompletedTask;
     }

@@ -17,7 +17,7 @@ public class EventService : IEventService
     public async Task<List<EventDto>> GetAllAsync(CancellationToken cancellationToken)
     {
         var events = await _eventRepository.GetAllAsync(cancellationToken);
-        
+
         return events
             .Select(x => x.MapToEventDto())
             .ToList();
@@ -33,10 +33,8 @@ public class EventService : IEventService
 
     public async Task<EventDto> CreateAsync(CreateEventDto createEventDto, CancellationToken cancellationToken)
     {
-        if (!await _eventRepository.IsNameUniqueAsync(@createEventDto.Name, cancellationToken))
-        {
+        if (!await _eventRepository.IsNameUniqueAsync(createEventDto.Name, cancellationToken))
             throw new Exception("User is already attending the event");
-        }
 
         var @event = new Event
         {

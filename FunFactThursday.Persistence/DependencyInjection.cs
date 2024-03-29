@@ -20,11 +20,11 @@ public static class DependencyInjection
         var databaseConnectionString = configuration.GetConnectionString("DefaultConnection");
 
         services.AddDbContext<FunFactThursdayDbContext>(db => db.UseSqlServer(databaseConnectionString));
-        
+
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         services.AddRepositories();
-        
+
         services.AddMassTransitOutbox();
     }
 
@@ -47,10 +47,7 @@ public static class DependencyInjection
                 o.UseBusOutbox();
             });
 
-            x.UsingRabbitMq((_, cfg) =>
-            {
-                cfg.AutoStart = true;
-            });
+            x.UsingRabbitMq((_, cfg) => { cfg.AutoStart = true; });
         });
     }
 }

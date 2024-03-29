@@ -8,12 +8,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.1-develop.1719" />
+        <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.1-develop.1719"/>
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\FunFactThursday.Application\FunFactThursday.Application.csproj" />
-      <ProjectReference Include="..\FunFactThursday.Persistence\FunFactThursday.Persistence.csproj" />
+        <ProjectReference Include="..\FunFactThursday.Application\FunFactThursday.Application.csproj"/>
+        <ProjectReference Include="..\FunFactThursday.Persistence\FunFactThursday.Persistence.csproj"/>
     </ItemGroup>
 </Project>

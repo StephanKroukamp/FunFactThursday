@@ -5,7 +5,8 @@ namespace FunFactThursday.Domain.Registrations;
 public static class RegistrationEventMappings
 {
     public static RegistrationSubmitted MapToRegistrationSubmitted(this Registration registration)
-        => new()
+    {
+        return new RegistrationSubmitted
         {
             RegistrationId = registration.Id,
             RegistrationDate = registration.RegistrationDate,
@@ -13,4 +14,5 @@ public static class RegistrationEventMappings
             EventId = registration.EventId,
             Payment = registration.Payment
         };
+    }
 }
