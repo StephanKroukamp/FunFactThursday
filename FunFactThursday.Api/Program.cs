@@ -27,8 +27,6 @@ app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
-
 app.MapApiEndpoints();
 
 app.Run();

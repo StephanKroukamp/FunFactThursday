@@ -7,11 +7,11 @@ public static class UserEndpoints
 {
     public static void MapUserEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapGet("/user", async ([FromServices] IUserService userService, CancellationToken cancellationToken) =>
+        app.MapGet("/users", async ([FromServices] IUserService userService, CancellationToken cancellationToken) =>
         await userService.GetAllAsync(cancellationToken))
         .WithTags("Users");
 
-        app.MapGet("/users",
+        app.MapGet("/user",
             async ([FromQuery] Guid userId, [FromServices] IUserService userService, CancellationToken cancellationToken)
                 => await userService.GetByIdAsync(userId, cancellationToken))
             .WithTags("Users");
