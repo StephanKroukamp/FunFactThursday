@@ -1,9 +1,9 @@
+using FunFactThursday.Api;
+using FunFactThursday.Api.Middleware;
 using FunFactThursday.Application;
 using FunFactThursday.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddControllers();
 
 var configuration = builder.Configuration;
 
@@ -23,10 +23,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapApiEndpoints();
 
 app.Run();

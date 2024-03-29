@@ -1,4 +1,5 @@
 using FunFactThursday.Domain.common;
+using FunFactThursday.Domain.common.Errors;
 using FunFactThursday.Domain.Users;
 
 namespace FunFactThursday.Application.Users;
@@ -26,7 +27,7 @@ public class UserService : IUserService
     public async Task<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         var user = await _userRepository.GetByIdAsync(id, cancellationToken)
-                   ?? throw new Exception("User Not Found");
+                   ?? throw new CustomException(UserErrors.NotFound(id));
 
         return user.MapToUserDto();
     }
@@ -34,7 +35,7 @@ public class UserService : IUserService
     public async Task<UserDto> CreateAsync(CreateUserDto createUserDto, CancellationToken cancellationToken)
     {
         if (!await _userRepository.IsEmailUniqueAsync(createUserDto.Email, cancellationToken))
-            throw new Exception("Email already exists");
+            throw new CustomException(UserErrors.EmailIsNotUnique);
 
         var user = new User
         {
@@ -54,7 +55,7 @@ public class UserService : IUserService
     public async Task<UserDto> UpdateAsync(UserDto userDto, CancellationToken cancellationToken)
     {
         var user = await _userRepository.GetByIdAsync(userDto.Id, cancellationToken)
-                   ?? throw new Exception("User Not Found");
+                   ?? throw new CustomException(UserErrors.NotFound(userDto.Id));
 
         await UpdateEmailAsync(userDto, user, cancellationToken);
         UpdateFirstName(userDto, user);
@@ -68,7 +69,7 @@ public class UserService : IUserService
     public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken)
     {
         var user = await _userRepository.GetByIdAsync(id, cancellationToken)
-                   ?? throw new Exception("User Not Found");
+                   ?? throw new CustomException(UserErrors.NotFound(id));
 
         _userRepository.Delete(user);
 
@@ -93,7 +94,7 @@ public class UserService : IUserService
         if (user.Email != userDto.Email)
         {
             if (!await _userRepository.IsEmailUniqueAsync(userDto.Email, cancellationToken))
-                throw new Exception("Email already exists");
+                throw new CustomException(UserErrors.EmailIsNotUnique);
 
             user.Email = userDto.Email;
         }

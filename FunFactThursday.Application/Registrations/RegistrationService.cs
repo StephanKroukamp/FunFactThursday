@@ -1,4 +1,5 @@
 using FunFactThursday.Domain.common;
+using FunFactThursday.Domain.common.Errors;
 using FunFactThursday.Domain.Events;
 using FunFactThursday.Domain.Registrations;
 using FunFactThursday.Domain.Users;
@@ -42,7 +43,7 @@ public class RegistrationService : IRegistrationService
     {
         var registration = await _registrationRepository
                                .GetByIdAsync(registrationId, cancellationToken)
-                           ?? throw new Exception("Registration Not Found");
+                           ?? throw new CustomException(RegistrationErrors.NotFound(registrationId));
 
         return registration.MapToRegistrationDto();
     }
@@ -52,14 +53,16 @@ public class RegistrationService : IRegistrationService
     {
         var user = await _userRepository
                        .GetByEmailAsync(createRegistrationDto.UserEmailAddress, cancellationToken)
-                   ?? throw new Exception("User Not Found");
+                   ?? throw new CustomException(UserErrors.NotFoundByEmail(createRegistrationDto.UserEmailAddress));
 
         var @event = await _eventRepository
                          .GetByNameAsync(createRegistrationDto.EventName, cancellationToken)
-                     ?? throw new Exception("Event Not Found");
+                     ?? throw new CustomException(EventErrors.NotFoundByName(createRegistrationDto.EventName));
 
         if (await _registrationRepository.IsUserAlreadyAttendingEvent(user.Id, @event.Id, cancellationToken))
-            throw new Exception("User is already attending the event");
+        {
+            throw new CustomException(RegistrationErrors.UserAlreadyAttendingEvent);
+        }
 
         var registration = new Registration
         {

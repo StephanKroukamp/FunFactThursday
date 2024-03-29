@@ -1,4 +1,5 @@
 using FunFactThursday.Domain.common;
+using FunFactThursday.Domain.common.Errors;
 using FunFactThursday.Domain.Events;
 
 namespace FunFactThursday.Application.Events;
@@ -26,7 +27,7 @@ public class EventService : IEventService
     public async Task<EventDto> GetByIdAsync(Guid eventId, CancellationToken cancellationToken)
     {
         var @event = await _eventRepository.GetByIdAsync(eventId, cancellationToken)
-                     ?? throw new Exception("Event Not Found");
+                     ?? throw new CustomException(EventErrors.NotFound(eventId));
 
         return @event.MapToEventDto();
     }
@@ -34,7 +35,9 @@ public class EventService : IEventService
     public async Task<EventDto> CreateAsync(CreateEventDto createEventDto, CancellationToken cancellationToken)
     {
         if (!await _eventRepository.IsNameUniqueAsync(createEventDto.Name, cancellationToken))
-            throw new Exception("User is already attending the event");
+        {
+            throw new CustomException(EventErrors.NameIsNotUnique);
+        }
 
         var @event = new Event
         {

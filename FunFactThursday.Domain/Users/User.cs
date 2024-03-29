@@ -1,5 +1,4 @@
 using FunFactThursday.Domain.common;
-using FunFactThursday.Domain.Events;
 using FunFactThursday.Domain.Registrations;
 
 namespace FunFactThursday.Domain.Users;

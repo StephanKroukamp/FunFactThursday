@@ -1,4 +1,6 @@
+using FunFactThursday.Domain.common.Errors;
 using FunFactThursday.Domain.Contracts;
+using FunFactThursday.Domain.Registrations;
 using MassTransit;
 
 namespace FunFactThursday.Persistence.StateMachines;
@@ -31,8 +33,7 @@ public class RegistrationStateMachine :
                 })
                 .If(context => context.Saga.Payment < 50m && context.GetRetryAttempt() == 0,
                     fail => fail.Then(_ =>
-                        throw new ApplicationException(
-                            "Really less than 50?")))
+                        throw new CustomException(RegistrationErrors.LessThan50)))
                 .Publish(context => new AddEventAttendee
                 {
                     RegistrationId = context.Saga.CorrelationId,
