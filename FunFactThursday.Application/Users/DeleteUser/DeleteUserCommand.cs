@@ -1,4 +1,3 @@
-using FunFactThursday.Domain.Users;
 using MediatR;
 
 namespace FunFactThursday.Application.Users.DeleteUser;

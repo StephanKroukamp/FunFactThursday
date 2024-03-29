@@ -1,11 +1,8 @@
-using FunFactThursday.Application.Users.CreateUser;
-using FunFactThursday.Domain.common;
 using FunFactThursday.Domain.Contracts;
 using MassTransit;
 using Microsoft.Extensions.Logging;
-using MediatR;
 
-namespace FunFactThursday.Application.Users.Consumers;
+namespace FunFactThursday.Application.Registrations.Consumers;
 
 public class NotifyRegistrationConsumer : IConsumer<RegistrationSubmitted>
 {

@@ -1,8 +1,5 @@
 using FunFactThursday.Domain.common;
-using FunFactThursday.Domain.Contracts;
-using FunFactThursday.Domain.Registrations;
 using FunFactThursday.Domain.Users;
-using MassTransit;
 using MediatR;
 
 namespace FunFactThursday.Application.Users.CreateUser;

@@ -1,10 +1,8 @@
-using FunFactThursday.Domain.Registrations;
 using FunFactThursday.Persistence.common;
 using FunFactThursday.Persistence.StateMachines;
 using MassTransit;
 using MassTransit.EntityFrameworkCoreIntegration;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FunFactThursday.Persistence;
 

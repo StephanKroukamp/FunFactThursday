@@ -1,5 +1,4 @@
 using FunFactThursday.Domain.common;
-using FunFactThursday.Domain.Contracts;
 using FunFactThursday.Domain.Registrations;
 using MassTransit;
 using MediatR;
@@ -21,27 +20,18 @@ public class CreateRegistrationCommandHandler : IRequestHandler<CreateRegistrati
 
     public async Task<RegistrationDto> Handle(CreateRegistrationCommand request, CancellationToken cancellationToken)
     {
-        //TODO: check unique of event and member id, and 2 helpers in repo. quick ez
-        
         var registration = new Registration
         {
             Id = Guid.NewGuid(),
             RegistrationDate = DateTime.UtcNow,
             MemberId = StringGenerator.Generate(),
             EventId = StringGenerator.Generate(),
-            Payment = 10000
+            Payment = request.Payment
         };
 
         _registrationRepository.Add(registration);
-
-        await _publishEndpoint.Publish(new RegistrationSubmitted
-        {
-            RegistrationId = registration.Id,
-            RegistrationDate = DateTime.Now,
-            MemberId = "random",
-            EventId = "random",
-            Payment = 1000
-        }, cancellationToken);
+        
+        await _publishEndpoint.Publish(registration.MapToRegistrationSubmitted(), cancellationToken);
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 

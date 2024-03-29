@@ -1,12 +1,5 @@
 using FunFactThursday.Application.Registrations;
 using FunFactThursday.Application.Registrations.CreateRegistration;
-using FunFactThursday.Application.Users;
-using FunFactThursday.Application.Users.CreateUser;
-using FunFactThursday.Application.Users.DeleteUser;
-using FunFactThursday.Application.Users.GetUser;
-using FunFactThursday.Application.Users.GetUsers;
-using FunFactThursday.Application.Users.UpdateUser;
-using FunFactThursday.Domain.Users;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
