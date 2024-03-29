@@ -31,6 +31,8 @@ var host = Host.CreateDefaultBuilder(args)
             x.AddConsumer<NotifyRegistrationConsumer>();
             x.AddConsumer<SendRegistrationEmailConsumer>();
             x.AddConsumer<AddEventAttendeeConsumer>();
+            x.AddConsumer<RegistrationValidatedConsumer>();
+            
             x.AddConsumer<ValidateRegistrationConsumer, ValidateRegistrationConsumerDefinition>();
             x.AddSagaStateMachine<RegistrationStateMachine, RegistrationState, RegistrationStateDefinition>()
                 .EntityFrameworkRepository(r =>

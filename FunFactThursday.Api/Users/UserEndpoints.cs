@@ -7,15 +7,6 @@ public static class UserEndpoints
 {
     public static void MapUserEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapGet("/users", async ([FromServices] IUserService userService, CancellationToken cancellationToken) =>
-        await userService.GetAllAsync(cancellationToken))
-        .WithTags("Users");
-
-        app.MapGet("/user",
-            async ([FromQuery] Guid userId, [FromServices] IUserService userService, CancellationToken cancellationToken)
-                => await userService.GetByIdAsync(userId, cancellationToken))
-            .WithTags("Users");
-
         app.MapPost("/user",
             async ([FromBody] CreateUserDto createUserDto, [FromServices] IUserService userService,
                     CancellationToken cancellationToken) =>
@@ -31,6 +22,15 @@ public static class UserEndpoints
         app.MapDelete("/user",
             async ([FromQuery] Guid userId, [FromServices] IUserService userService, CancellationToken cancellationToken)
                 => await userService.DeleteAsync(userId, cancellationToken))
+            .WithTags("Users");
+        
+        app.MapGet("/users", async ([FromServices] IUserService userService, CancellationToken cancellationToken) =>
+            await userService.GetAllAsync(cancellationToken))
+            .WithTags("Users");
+
+        app.MapGet("/user",
+                async ([FromQuery] Guid userId, [FromServices] IUserService userService, CancellationToken cancellationToken)
+                    => await userService.GetByIdAsync(userId, cancellationToken))
             .WithTags("Users");
     }
 }
