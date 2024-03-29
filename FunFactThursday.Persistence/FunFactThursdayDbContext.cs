@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FunFactThursday.Persistence;
 
-public class RegistrationDbContext : SagaDbContext
+public class FunFactThursdayDbContext : SagaDbContext
 {
-    public RegistrationDbContext(DbContextOptions<RegistrationDbContext> options) : base(options)
+    public FunFactThursdayDbContext(DbContextOptions<FunFactThursdayDbContext> options) : base(options)
     {
     }
 

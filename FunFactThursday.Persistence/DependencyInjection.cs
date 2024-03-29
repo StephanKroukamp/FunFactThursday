@@ -19,7 +19,7 @@ public static class DependencyInjection
     {
         var databaseConnectionString = configuration.GetConnectionString("DefaultConnection");
 
-        services.AddDbContext<RegistrationDbContext>(db => db.UseSqlServer(databaseConnectionString));
+        services.AddDbContext<FunFactThursdayDbContext>(db => db.UseSqlServer(databaseConnectionString));
         
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -39,7 +39,7 @@ public static class DependencyInjection
     {
         services.AddMassTransit(x =>
         {
-            x.AddEntityFrameworkOutbox<RegistrationDbContext>(o =>
+            x.AddEntityFrameworkOutbox<FunFactThursdayDbContext>(o =>
             {
                 o.QueryDelay = TimeSpan.FromSeconds(1);
 

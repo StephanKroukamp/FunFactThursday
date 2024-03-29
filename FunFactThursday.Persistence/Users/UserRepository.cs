@@ -5,9 +5,9 @@ namespace FunFactThursday.Persistence.Users;
 
 internal sealed class UserRepository : IUserRepository
 {
-    private readonly RegistrationDbContext _dbContext;
+    private readonly FunFactThursdayDbContext _dbContext;
 
-    public UserRepository(RegistrationDbContext dbContext) => _dbContext = dbContext;
+    public UserRepository(FunFactThursdayDbContext dbContext) => _dbContext = dbContext;
 
     public async Task<List<User>> GetAllAsync(CancellationToken cancellationToken = default) =>
         await _dbContext

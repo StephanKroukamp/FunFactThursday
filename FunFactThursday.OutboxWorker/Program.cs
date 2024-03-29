@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((hostContext, services) =>
     {
-        services.AddDbContext<RegistrationDbContext>(x =>
+        services.AddDbContext<FunFactThursdayDbContext>(x =>
         {
             var connectionString = hostContext.Configuration.GetConnectionString("DefaultConnection");
 
@@ -22,7 +22,7 @@ var host = Host.CreateDefaultBuilder(args)
         
         services.AddMassTransit(x =>
         {
-            x.AddEntityFrameworkOutbox<RegistrationDbContext>(o =>
+            x.AddEntityFrameworkOutbox<FunFactThursdayDbContext>(o =>
             {
                 o.UseSqlServer();
 
@@ -38,7 +38,7 @@ var host = Host.CreateDefaultBuilder(args)
             x.AddSagaStateMachine<RegistrationStateMachine, RegistrationState, RegistrationStateDefinition>()
                 .EntityFrameworkRepository(r =>
                 {
-                    r.ExistingDbContext<RegistrationDbContext>();
+                    r.ExistingDbContext<FunFactThursdayDbContext>();
                     r.UseSqlServer();
                 });
 

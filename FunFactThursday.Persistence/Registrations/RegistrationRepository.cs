@@ -5,9 +5,9 @@ namespace FunFactThursday.Persistence.Registrations;
 
 public class RegistrationRepository : IRegistrationRepository
 {
-    private readonly RegistrationDbContext _dbContext;
+    private readonly FunFactThursdayDbContext _dbContext;
 
-    public RegistrationRepository(RegistrationDbContext dbContext)
+    public RegistrationRepository(FunFactThursdayDbContext dbContext)
     {
         _dbContext = dbContext;
     }

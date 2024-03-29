@@ -5,9 +5,9 @@ namespace FunFactThursday.Persistence.Events;
 
 public class EventRepository : IEventRepository
 {
-    private readonly RegistrationDbContext _dbContext;
+    private readonly FunFactThursdayDbContext _dbContext;
 
-    public EventRepository(RegistrationDbContext dbContext)
+    public EventRepository(FunFactThursdayDbContext dbContext)
     {
         _dbContext = dbContext;
     }

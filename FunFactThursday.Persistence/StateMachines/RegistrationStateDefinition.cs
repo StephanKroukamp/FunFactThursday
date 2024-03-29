@@ -10,6 +10,6 @@ public class RegistrationStateDefinition :
     {
         endpointConfigurator.UseMessageRetry(r => r.Intervals(10, 50, 100, 1000, 1000, 1000, 1000, 1000));
 
-        endpointConfigurator.UseEntityFrameworkOutbox<RegistrationDbContext>(context);
+        endpointConfigurator.UseEntityFrameworkOutbox<FunFactThursdayDbContext>(context);
     }
 }
