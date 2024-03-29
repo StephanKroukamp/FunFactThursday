@@ -22,6 +22,12 @@ public class RegistrationRepository : IRegistrationRepository
             .Set<Registration>()
             .FirstOrDefaultAsync(registration => registration.Id == id, cancellationToken);
 
+    public async Task<bool> IsUserAlreadyAttendingEvent(Guid userId, Guid eventId, CancellationToken cancellationToken = default) =>
+        await _dbContext
+            .Set<Registration>()
+            .AnyAsync(registration => registration.UserId == userId &&
+                                      registration.EventId == eventId, cancellationToken);
+
     public void Add(Registration registration)
     {
         _dbContext.Set<Registration>().Add(registration);

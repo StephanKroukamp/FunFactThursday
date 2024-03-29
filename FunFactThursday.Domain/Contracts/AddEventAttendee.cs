@@ -3,6 +3,6 @@ namespace FunFactThursday.Domain.Contracts;
 public record AddEventAttendee
 {
     public Guid RegistrationId { get; init; }
-    public string MemberId { get; init; } = null!;
-    public string EventId { get; init; } = null!;
+    public Guid UserId { get; init; }
+    public Guid EventId { get; init; }
 }

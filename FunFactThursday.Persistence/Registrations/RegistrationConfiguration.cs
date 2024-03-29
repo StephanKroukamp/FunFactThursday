@@ -23,7 +23,7 @@ internal sealed class RegistrationConfiguration : IEntityTypeConfiguration<Regis
         builder.Property(registration => registration.Id).ValueGeneratedNever();
 
         builder.Property(x => x.RegistrationDate);
-        builder.Property(x => x.MemberId).HasMaxLength(64);
+        builder.Property(x => x.UserId).HasMaxLength(64);
         builder.Property(x => x.EventId).HasMaxLength(64);
         builder.Property(x => x.Payment);
     }
@@ -32,7 +32,7 @@ internal sealed class RegistrationConfiguration : IEntityTypeConfiguration<Regis
     {
         builder.HasIndex(x => new
         {
-            x.MemberId,
+            x.UserId,
             x.EventId
         }).IsUnique();
     }

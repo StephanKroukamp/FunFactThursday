@@ -15,7 +15,7 @@ public class NotifyRegistrationConsumer : IConsumer<RegistrationSubmitted>
 
     public Task Consume(ConsumeContext<RegistrationSubmitted> context)
     {
-        _logger.LogInformation("Member {MemberId} registered for event {EventId} on {RegistrationDate}", context.Message.MemberId, context.Message.EventId,
+        _logger.LogInformation("Member {MemberId} registered for event {EventId} on {RegistrationDate}", context.Message.UserId, context.Message.EventId,
             context.Message.RegistrationDate);
 
         return Task.CompletedTask;

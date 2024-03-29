@@ -5,6 +5,8 @@ public interface IRegistrationRepository
     Task<List<Registration>> GetAllAsync(CancellationToken cancellationToken = default);
 
     Task<Registration?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+
+    Task<bool> IsUserAlreadyAttendingEvent(Guid userId, Guid eventId, CancellationToken cancellationToken = default);
     
     void Add(Registration registration);
 

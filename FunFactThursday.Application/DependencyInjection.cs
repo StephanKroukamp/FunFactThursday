@@ -1,4 +1,5 @@
-﻿using FunFactThursday.Application.Registrations;
+﻿using FunFactThursday.Application.Events;
+using FunFactThursday.Application.Registrations;
 using FunFactThursday.Application.Users;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,5 +11,6 @@ public static class DependencyInjection
     {
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IRegistrationService, RegistrationService>();
+        services.AddScoped<IEventService, EventService>();
     }
 }

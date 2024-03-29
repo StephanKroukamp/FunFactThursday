@@ -18,6 +18,6 @@ public class ValidateRegistrationConsumer :
 
     public async Task Consume(ConsumeContext<AddEventAttendee> context)
     {
-        await _validationService.ValidateRegistration(context.Message.EventId, context.Message.MemberId, context.Message.RegistrationId);
+        await _validationService.ValidateRegistration(context.Message.EventId, context.Message.UserId, context.Message.RegistrationId);
     }
 }

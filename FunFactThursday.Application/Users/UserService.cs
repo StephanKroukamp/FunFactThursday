@@ -26,7 +26,7 @@ public class UserService : IUserService
     public async Task<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken)
     {
         var user = await _userRepository.GetByIdAsync(id, cancellationToken)
-                   ?? throw new Exception("Not Found");
+                   ?? throw new Exception("User Not Found");
 
         return user.MapToUserDto();
     }
@@ -56,7 +56,7 @@ public class UserService : IUserService
     public async Task<UserDto> UpdateAsync(UserDto userDto, CancellationToken cancellationToken)
     {
         var user = await _userRepository.GetByIdAsync(userDto.Id, cancellationToken)
-                   ?? throw new Exception("Not Found");
+                   ?? throw new Exception("User Not Found");
 
         await UpdateEmailAsync(userDto, user, cancellationToken);
         UpdateFirstName(userDto, user);
@@ -70,7 +70,7 @@ public class UserService : IUserService
     public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken)
     {
         var user = await _userRepository.GetByIdAsync(id, cancellationToken)
-                   ?? throw new Exception("Not Found");
+                   ?? throw new Exception("User Not Found");
 
         _userRepository.Delete(user);
 

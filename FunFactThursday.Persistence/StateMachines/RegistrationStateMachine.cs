@@ -18,7 +18,7 @@ public class RegistrationStateMachine :
                 {
                     context.Saga.RegistrationDate = context.Message.RegistrationDate;
                     context.Saga.EventId = context.Message.EventId;
-                    context.Saga.MemberId = context.Message.MemberId;
+                    context.Saga.UserId = context.Message.UserId;
                     context.Saga.Payment = context.Message.Payment;
                 })
                 .TransitionTo(Registered)
@@ -27,7 +27,7 @@ public class RegistrationStateMachine :
                     RegistrationId = context.Saga.CorrelationId,
                     RegistrationDate = context.Saga.RegistrationDate,
                     EventId = context.Saga.EventId,
-                    MemberId = context.Saga.MemberId
+                    UserId = context.Saga.UserId
                 })
                 .If(context => context.Saga.Payment < 50m && context.GetRetryAttempt() == 0,
                     fail => fail.Then(_ =>
@@ -37,7 +37,7 @@ public class RegistrationStateMachine :
                 {
                     RegistrationId = context.Saga.CorrelationId,
                     EventId = context.Saga.EventId,
-                    MemberId = context.Saga.MemberId
+                    UserId = context.Saga.UserId
                 })
         );
     }

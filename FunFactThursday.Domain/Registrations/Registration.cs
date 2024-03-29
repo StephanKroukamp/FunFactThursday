@@ -6,11 +6,11 @@ public class Registration : Entity
 {
     public Guid Id { get; set; }
     
+    public decimal Payment { get; set; }
+    
     public DateTime RegistrationDate { get; set; }
 
-    public string MemberId { get; set; } = null!;
+    public Guid UserId { get; set; }
     
-    public string EventId { get; set; } = null!;
-
-    public decimal Payment { get; set; }
+    public Guid EventId { get; set; }
 }

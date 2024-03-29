@@ -16,7 +16,7 @@ public class SendRegistrationEmailConsumer :
 
     public Task Consume(ConsumeContext<SendRegistrationEmail> context)
     {
-        _logger.LogInformation("Notifying Member {MemberId} that they registered for event {EventId} on {RegistrationDate}", context.Message.MemberId,
+        _logger.LogInformation("Notifying Member {MemberId} that they registered for event {EventId} on {RegistrationDate}", context.Message.UserId,
             context.Message.EventId, context.Message.RegistrationDate);
 
         return Task.CompletedTask;

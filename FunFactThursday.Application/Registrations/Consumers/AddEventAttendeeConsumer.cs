@@ -16,7 +16,7 @@ public class AddEventAttendeeConsumer :
 
     public Task Consume(ConsumeContext<AddEventAttendee> context)
     {
-        _logger.LogInformation("Adding Member {MemberId} as an attendee for event {EventId}", context.Message.MemberId, context.Message.EventId);
+        _logger.LogInformation("Adding Member {MemberId} as an attendee for event {EventId}", context.Message.UserId, context.Message.EventId);
 
         return Task.CompletedTask;
     }

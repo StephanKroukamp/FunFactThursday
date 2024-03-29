@@ -9,7 +9,7 @@ public static class RegistrationEventMappings
         {
             RegistrationId = registration.Id,
             RegistrationDate = registration.RegistrationDate,
-            MemberId = registration.MemberId,
+            UserId = registration.UserId,
             EventId = registration.EventId,
             Payment = registration.Payment
         };

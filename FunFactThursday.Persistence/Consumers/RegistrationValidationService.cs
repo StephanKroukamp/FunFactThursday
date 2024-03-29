@@ -13,7 +13,7 @@ public class RegistrationValidationService :
         _publishEndpoint = publishEndpoint;
     }
 
-    public async Task ValidateRegistration(string eventId, string memberId, Guid registrationId)
+    public async Task ValidateRegistration(Guid eventId, Guid userId, Guid registrationId)
     {
         await _publishEndpoint.Publish(new RegistrationValidated { RegistrationId = registrationId });
     }

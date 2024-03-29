@@ -9,8 +9,8 @@ public class RegistrationState :
 
     public DateTime RegistrationDate { get; set; }
 
-    public string EventId { get; set; } = null!;
-    public string MemberId { get; set; } = null!;
+    public Guid EventId { get; set; }
+    public Guid UserId { get; set; }
     public decimal Payment { get; set; }
     public Guid CorrelationId { get; set; }
 }

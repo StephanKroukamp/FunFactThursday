@@ -13,7 +13,7 @@ public class RegistrationStateMap :
         
         entity.Property(x => x.RegistrationDate);
         entity.Property(x => x.EventId);
-        entity.Property(x => x.MemberId);
+        entity.Property(x => x.UserId);
         entity.Property(x => x.Payment);
     }
 }

@@ -14,6 +14,14 @@ public class RegistrationController : ControllerBase
         _registrationService = registrationService;
     }
 
+    [HttpGet("GetRegistrations")]
+    public async Task<List<RegistrationDto>> Get() =>
+        await _registrationService.GetAllAsync(default);
+    
+    [HttpGet("GetRegistration/{registrationId}")]
+    public async Task<RegistrationDto> Get([FromRoute] Guid registrationId) =>
+        await _registrationService.GetByIdAsync(registrationId, default);
+    
     [HttpPost("CreateRegistration")]
     public async Task<RegistrationDto> Create([FromBody] CreateRegistrationDto createRegistrationDto) => 
         await _registrationService.CreateAsync(createRegistrationDto, default);
