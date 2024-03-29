@@ -1,6 +1,4 @@
 using FunFactThursday.Application.Registrations;
-using FunFactThursday.Application.Registrations.CreateRegistration;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FunFactThursday.Api.Controllers;
@@ -9,13 +7,14 @@ namespace FunFactThursday.Api.Controllers;
 [Route("[controller]")]
 public class RegistrationController : ControllerBase
 {
-    private readonly IMediator _mediator;
+    private readonly IRegistrationService _registrationService;
 
-    public RegistrationController(IMediator mediator)
+    public RegistrationController(IRegistrationService registrationService)
     {
-        _mediator = mediator;
+        _registrationService = registrationService;
     }
 
     [HttpPost("CreateRegistration")]
-    public async Task<RegistrationDto> Create([FromBody] CreateRegistrationCommand createRegistrationCommand) => await _mediator.Send(createRegistrationCommand);
+    public async Task<RegistrationDto> Create([FromBody] CreateRegistrationDto createRegistrationDto) => 
+        await _registrationService.CreateAsync(createRegistrationDto, default);
 }

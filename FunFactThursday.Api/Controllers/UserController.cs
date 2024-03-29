@@ -1,10 +1,4 @@
 using FunFactThursday.Application.Users;
-using FunFactThursday.Application.Users.CreateUser;
-using FunFactThursday.Application.Users.DeleteUser;
-using FunFactThursday.Application.Users.GetUser;
-using FunFactThursday.Application.Users.GetUsers;
-using FunFactThursday.Application.Users.UpdateUser;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FunFactThursday.Api.Controllers;
@@ -13,26 +7,30 @@ namespace FunFactThursday.Api.Controllers;
 [Route("[controller]")]
 public class UserController : ControllerBase
 {
-    private readonly IMediator _mediator;
+    private readonly IUserService _userService;
 
-    public UserController(IMediator mediator)
+    public UserController(IUserService userService)
     {
-        _mediator = mediator;
+        _userService = userService;
     }
 
-    [HttpPost("CreateUser")]
-    public async Task<UserDto> Create([FromBody] CreateUserCommand createUserCommand) => await _mediator.Send(createUserCommand);
-    
-    [HttpPut("UpdateUser")]
-    public async Task<UserDto> Update([FromBody] UserDto userDto) => await _mediator.Send(new UpdateUserCommand(userDto));
-    
-    [HttpDelete("DeleteUser/{userId}")]
-    public async Task<Unit> Delete([FromRoute] Guid userId) => await _mediator.Send(new DeleteUserCommand(userId));
+    [HttpGet("GetUsers")]
+    public async Task<List<UserDto>> Get() =>
+        await _userService.GetAllAsync(default);
     
     [HttpGet("GetUser/{userId}")]
+    public async Task<UserDto> Get([FromRoute] Guid userId) =>
+        await _userService.GetByIdAsync(userId, default);
     
-    public async Task<UserDto> Get([FromRoute] Guid userId) => await _mediator.Send(new GetUserQuery(userId));
-    
-    [HttpGet("GetUsers")]
-    public async Task<List<UserDto>> Get() => await _mediator.Send(new GetUsersQuery());
+    [HttpPost("CreateUser")]
+    public async Task<UserDto> Create([FromBody] CreateUserDto createUserDto) =>
+        await _userService.CreateAsync(createUserDto, default);
+
+    [HttpPut("UpdateUser")]
+    public async Task<UserDto> Update([FromBody] UserDto userDto) =>
+        await _userService.UpdateAsync(userDto, default);
+
+    [HttpDelete("DeleteUser/{userId}")]
+    public async Task<bool> Delete([FromRoute] Guid userId) =>
+        await _userService.DeleteAsync(userId, default);
 }

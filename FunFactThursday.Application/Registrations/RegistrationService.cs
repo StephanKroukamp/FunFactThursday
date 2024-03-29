@@ -1,24 +1,26 @@
 using FunFactThursday.Domain.common;
 using FunFactThursday.Domain.Registrations;
 using MassTransit;
-using MediatR;
 
-namespace FunFactThursday.Application.Registrations.CreateRegistration;
+namespace FunFactThursday.Application.Registrations;
 
-public class CreateRegistrationCommandHandler : IRequestHandler<CreateRegistrationCommand, RegistrationDto>
+public class RegistrationService : IRegistrationService
 {
-    private readonly IPublishEndpoint _publishEndpoint;
     private readonly IRegistrationRepository _registrationRepository;
     private readonly IUnitOfWork _unitOfWork;
-
-    public CreateRegistrationCommandHandler(IPublishEndpoint publishEndpoint, IRegistrationRepository registrationRepository, IUnitOfWork unitOfWork)
+    private readonly IPublishEndpoint _publishEndpoint;
+    
+    public RegistrationService(IRegistrationRepository registrationRepository, IUnitOfWork unitOfWork, IPublishEndpoint publishEndpoint)
     {
-        _publishEndpoint = publishEndpoint;
         _registrationRepository = registrationRepository;
         _unitOfWork = unitOfWork;
+        _publishEndpoint = publishEndpoint;
     }
-
-    public async Task<RegistrationDto> Handle(CreateRegistrationCommand request, CancellationToken cancellationToken)
+    
+    public async Task<List<Registration>> GetAlLAsync(CancellationToken cancellationToken) =>
+        await _registrationRepository.GetAllAsync(cancellationToken);
+    
+    public async Task<RegistrationDto> CreateAsync(CreateRegistrationDto createRegistrationDto, CancellationToken cancellationToken)
     {
         var registration = new Registration
         {
@@ -26,7 +28,7 @@ public class CreateRegistrationCommandHandler : IRequestHandler<CreateRegistrati
             RegistrationDate = DateTime.UtcNow,
             MemberId = StringGenerator.Generate(),
             EventId = StringGenerator.Generate(),
-            Payment = request.Payment
+            Payment = createRegistrationDto.Payment
         };
 
         _registrationRepository.Add(registration);

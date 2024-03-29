@@ -1,8 +1,6 @@
-using MediatR;
+namespace FunFactThursday.Application.Users;
 
-namespace FunFactThursday.Application.Users.CreateUser;
-
-public class CreateUserCommand : IRequest<UserDto>
+public class CreateUserDto
 {
     public string Email { get; set; } = null!;
 

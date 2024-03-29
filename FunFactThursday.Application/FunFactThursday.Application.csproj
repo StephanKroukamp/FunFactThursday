@@ -12,6 +12,7 @@
 
     <ItemGroup>
       <Folder Include="common\" />
+      <Folder Include="Events\" />
     </ItemGroup>
 
     <ItemGroup>
@@ -19,6 +20,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
+        <HintPath>..\..\..\..\..\opt\homebrew\Cellar\dotnet@6\6.0.125\libexec\shared\Microsoft.AspNetCore.App\6.0.25\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      </Reference>
       <Reference Include="Microsoft.Extensions.Logging.Abstractions">
         <HintPath>..\..\..\..\..\opt\homebrew\Cellar\dotnet@6\6.0.125\libexec\shared\Microsoft.AspNetCore.App\6.0.25\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
       </Reference>

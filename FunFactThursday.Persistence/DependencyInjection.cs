@@ -1,7 +1,9 @@
 ﻿using FunFactThursday.Domain.common;
+using FunFactThursday.Domain.Events;
 using FunFactThursday.Domain.Registrations;
 using FunFactThursday.Domain.Users;
 using FunFactThursday.Persistence.common;
+using FunFactThursday.Persistence.Events;
 using FunFactThursday.Persistence.Registrations;
 using FunFactThursday.Persistence.Users;
 using MassTransit;
@@ -30,6 +32,7 @@ public static class DependencyInjection
     {
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IRegistrationRepository, RegistrationRepository>();
+        services.AddScoped<IEventRepository, EventRepository>();
     }
 
     private static void AddMassTransitOutbox(this IServiceCollection services)

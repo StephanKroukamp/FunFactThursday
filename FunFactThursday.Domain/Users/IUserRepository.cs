@@ -10,7 +10,7 @@ public interface IUserRepository
 
     Task<bool> IsEmailUniqueAsync(string email, CancellationToken cancellationToken = default);
 
-    void Add(User user);
+    void Create(User user);
 
-    void Remove(User user);
+    void Delete(User user);
 }

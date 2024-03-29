@@ -27,9 +27,9 @@ internal sealed class UserRepository : IUserRepository
     public async Task<bool> IsEmailUniqueAsync(string email, CancellationToken cancellationToken = default) =>
         !await _dbContext.Set<User>().AnyAsync(user => user.Email == email, cancellationToken);
 
-    public void Add(User user) => 
+    public void Create(User user) => 
         _dbContext.Set<User>().Add(user);
 
-    public void Remove(User user) => 
+    public void Delete(User user) => 
         _dbContext.Set<User>().Remove(user);
 }
