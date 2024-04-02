@@ -6,12 +6,10 @@ namespace FunFactThursday.Application.Registrations.Consumers;
 public class CreateRegistrationConsumer : IConsumer<CreateRegistration>
 {
     private readonly IRegistrationService _registrationService;
-    private readonly IPublishEndpoint _publishEndpoint;
     
-    public CreateRegistrationConsumer(IRegistrationService registrationService, IPublishEndpoint publishEndpoint)
+    public CreateRegistrationConsumer(IRegistrationService registrationService)
     {
         _registrationService = registrationService;
-        _publishEndpoint = publishEndpoint;
     }
 
     public async Task Consume(ConsumeContext<CreateRegistration> context)
@@ -25,7 +23,7 @@ public class CreateRegistrationConsumer : IConsumer<CreateRegistration>
             Payment = message.Payment
         }, default);
 
-        await _publishEndpoint.Publish(new RegistrationCreated
+        await context.Publish(new RegistrationCreated
         {
             RegistrationId = registrationDto.Id,
             RegistrationDate = registrationDto.RegistrationDate,
