@@ -1,6 +1,6 @@
 namespace FunFactThursday.Domain.Contracts;
 
-public record RegistrationSubmitted
+public record RegistrationCreated
 {
     public Guid RegistrationId { get; init; }
     public DateTime RegistrationDate { get; init; }

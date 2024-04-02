@@ -6,7 +6,6 @@ using FunFactThursday.Persistence.common;
 using FunFactThursday.Persistence.Events;
 using FunFactThursday.Persistence.Registrations;
 using FunFactThursday.Persistence.Users;
-using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,8 +23,6 @@ public static class DependencyInjection
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         services.AddRepositories();
-
-        services.AddMassTransitOutbox();
     }
 
     private static void AddRepositories(this IServiceCollection services)
@@ -33,21 +30,5 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IRegistrationRepository, RegistrationRepository>();
         services.AddScoped<IEventRepository, EventRepository>();
-    }
-
-    private static void AddMassTransitOutbox(this IServiceCollection services)
-    {
-        services.AddMassTransit(x =>
-        {
-            x.AddEntityFrameworkOutbox<FunFactThursdayDbContext>(o =>
-            {
-                o.QueryDelay = TimeSpan.FromSeconds(1);
-
-                o.UseSqlServer();
-                o.UseBusOutbox();
-            });
-
-            x.UsingRabbitMq((_, cfg) => { cfg.AutoStart = true; });
-        });
     }
 }

@@ -4,9 +4,9 @@ namespace FunFactThursday.Domain.Registrations;
 
 public static class RegistrationEventMappings
 {
-    public static RegistrationSubmitted MapToRegistrationSubmitted(this Registration registration)
+    public static RegistrationCreated MapToRegistrationSubmitted(this Registration registration)
     {
-        return new RegistrationSubmitted
+        return new RegistrationCreated
         {
             RegistrationId = registration.Id,
             RegistrationDate = registration.RegistrationDate,
